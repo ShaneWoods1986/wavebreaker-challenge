@@ -1,0 +1,22 @@
+.list-page {
+    .parent {
+        margin: 20px auto 10px;
+        padding: 0 20px;
+        display: flex;
+        flex-wrap: wrap;
+
+        .item div {
+            margin: 5px;
+            background-color: red;
+        }
+        .item:nth-of-type(odd) div {
+            background-color: blue;
+        }
+        .item:nth-of-type(3) div {
+            background-color: green;
+        }
+        .item:nth-of-type(4) div {
+            background-color: purple;
+        }
+    }
+}
