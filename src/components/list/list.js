@@ -3,27 +3,32 @@ import { Link } from "react-router-dom";
 
 import './list.scss';
 import Pagination from '../pagination/pagination';
-import testData from '../../testData.json';
+import imageDataService from '../../data-services/img.service';
 
 class List extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            totalItems: testData.length,
-            displayedItems: testData.slice(0, 20),
+            entriesDisplayed: 3,
+            totalItems: 0,
+            displayedItems: [],
             activePage: 1
         };
     }
 
-    renderItem(itemProperties) {
+    async componentDidMount() {
+        const response = await imageDataService.getImages(this.state.entriesDisplayed, this.state.activePage);
+        this.setState({...this.state, totalItems: response.total, displayedItems: response.images});
+    }
+
+    renderItem(item) {
         const style = {
-            width: itemProperties.width,
-            height: itemProperties.height
+            width: item.width,
+            height: item.height
         };
-        return <Link className="item" to={`/view/${itemProperties.id}`}>
-        <div  style={style}>
-        </div>
+        return <Link key={`img${item.id}`} className="item" to={`/view/${item.id}`}>
+            <img style={style} alt={item.tags} src={item.url}></img>
         </Link>
 
     }
@@ -34,9 +39,9 @@ class List extends Component {
         });
     }
 
-    pageChanged({num, activePage}) {
-        console.log("#########num", num);
-        this.setState({...this.state, displayedItems: testData.slice(num, num + 20), activePage});
+    async pageChanged({activePage}) {
+        const response = await imageDataService.getImages(this.state.entriesDisplayed, activePage);
+        this.setState({...this.state, activePage, totalItems: response.total, displayedItems: response.images});
     }
 
     render() {
@@ -47,7 +52,7 @@ class List extends Component {
                 <div className="parent">
                     {this.renderItems()}
                 </div>
-                <Pagination total={this.state.totalItems} activePage={this.state.activePage} pageChanged={(i) => this.pageChanged(i)}/>
+                <Pagination total={this.state.totalItems} entriesDisplayed={this.state.entriesDisplayed} activePage={this.state.activePage} pageChanged={(i) => this.pageChanged(i)}/>
 
             </div>
             );

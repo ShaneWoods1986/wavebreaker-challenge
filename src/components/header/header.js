@@ -22,6 +22,12 @@ class Header extends Component {
     render() {
         return (
             <div className="top-bar">
+                <div className="pixabay-logo">
+                    <a href="https://pixabay.com/">
+                        <img src="https://pixabay.com/static/img/logo.png" alt="Pixabay"/>
+                    </a>
+                </div>
+
                 <div className="group">
                     <h3>Wavebreak Challenge</h3>
                     <div className="button-group" role="group">

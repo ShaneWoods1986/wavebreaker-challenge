@@ -3,7 +3,7 @@ import './pagination.scss';
 
 class Pagination extends Component {
     renderPageItems() {
-        const pageNum = (this.props.total / 20) + 1;
+        const pageNum = (this.props.total / this.props.entriesDisplayed) + 1;
         if (pageNum < 2) {
             return;
         }
@@ -23,8 +23,7 @@ class Pagination extends Component {
     }
 
     changePage(page) {
-        const num = (page - 1) * 20;
-        this.props.pageChanged({num, activePage: page});
+        this.props.pageChanged({activePage: page});
     }
 
     render() {
