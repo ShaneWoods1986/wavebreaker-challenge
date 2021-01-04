@@ -1,4 +1,5 @@
 import './App.css';
+import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import routes from './routes';
@@ -16,7 +17,7 @@ function App() {
               key={index}
               path={route.path}
               exact={route.exact}
-              component={route.header}
+              component={props => (React.createElement(route.header, {...props, title: route.title}))}
               />
               ))}
             <Route exact path="*" component={() => <div></div>}/>

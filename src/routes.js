@@ -1,4 +1,3 @@
-import React from 'react';
 import List from './components/list/list';
 import View from './components/view/view';
 import Header from './components/header/header';
@@ -8,9 +7,10 @@ const routes = [
         id: 1,
         path: "/list",
         exact: true,
-        text: 'List',
+        text: "Home",
         className: "btn btn-primary",
-        header: () => <div></div>,
+        header: Header,
+        title: "List Page",
         main: List
     }, {
         id: 2,
@@ -19,6 +19,7 @@ const routes = [
         text: "View",
         indirect: true,
         header: Header,
+        title: "View Page",
         main: View
     }
 ];

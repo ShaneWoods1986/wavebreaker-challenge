@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+import './view.scss';
 import imageDataService from '../../data-services/img.service';
 
 class View extends Component {
@@ -15,19 +16,42 @@ class View extends Component {
     }
 
     renderImage() {
-        return <img alt={this.state.image.tags} src={this.state.image.url}></img>
+        return <img alt={this.state.image.tags} srcSet={this.state.image.srcSet} src={this.state.image.url}></img>
+    }
+
+    renderImageData() {
+        return <div className="img-data">
+        <div className="row">
+            <strong>Photographer</strong>
+            <span>{this.state.image.user}</span>
+        </div>
+        <div className="row">
+            <strong>Tags</strong>
+            <span>{this.state.image.tags}</span>
+        </div>
+        <div className="row">
+            <strong>Views</strong>
+            <span>{this.state.image.views}</span>
+        </div>
+        <div className="row">
+            <strong>Downloads</strong>
+            <span>{this.state.image.downloads}</span>
+        </div>
+        <div className="row">
+            <strong>Size</strong>
+            <span>{this.state.image.size}</span>
+        </div>
+    </div>
     }
 
     render() {
         return (
             <div className="view-page">
-                <h1>View Page</h1>
-                {this.renderImage()}
-                <div>Name: {this.state.image.user}</div>
-                <div>Tags: {this.state.image.tags}</div>
-                <div>Views: {this.state.image.views}</div>
-                <div>Downloads: {this.state.image.downloads}</div>
-                <div>Size: {this.state.image.size}</div>
+                {/* <h1>View Page</h1> */}
+                <div className="container">
+                    {this.renderImage()}
+                    {this.renderImageData()}
+                </div>
             </div>
             );
         }

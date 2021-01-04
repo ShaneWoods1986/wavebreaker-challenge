@@ -1,3 +1,4 @@
+const config = require("./config.json");
 function imageDataService() {
 
     function getHeaders(hrs = {}) {
@@ -5,8 +6,7 @@ function imageDataService() {
     }
 
     function getImageUrl(id, page, perPage = '20', searchTerm) {
-        const apiKey = '6473511-0417f2cad683f1bee54cafe15';
-        let url = `https://pixabay.com/api/?key=${apiKey}&per_page=${perPage}`;
+        let url = `https://pixabay.com/api/?key=${config.apiKey}&per_page=${perPage}`;
         if (id) {
             url = url + `&id=${id}`;
         }
@@ -36,9 +36,13 @@ function imageDataService() {
                 images: response.hits.map((image) => {
                     return {
                         id: image.id,
+                        previewSrcSet: `
+                            ${image.webformatURL} 640w,
+                            ${image.previewURL} 150w
+                        `,
                         url: image.previewURL,
-                        height: image.previewHeight,
-                        width: image.previewWidth,
+                        previewHeight: image.previewHeight,
+                        previewWidth: image.previewWidth,
                         tags: image.tags
                     }
                 })
@@ -54,7 +58,14 @@ function imageDataService() {
         .then(response => {
             const image = response.hits[0];
             return {
-                url: image.imageURL,
+                url: image.largeImageURL,
+                srcSet: `
+                    ${image.imageURL} 6000w,
+                    ${image.fullHDURL} 1920w,
+                    ${image.largeImageURL} 1280w,
+                    ${image.webformatURL} 640w,
+                    ${image.previewURL} 150w
+                `,
                 views: image.views,
                 downloads: image.downloads,
                 tags: image.tags,

@@ -10,7 +10,8 @@ class List extends Component {
         super(props);
 
         this.state = {
-            entriesDisplayed: 3,
+            photoSize: 2,
+            entriesDisplayed: 30,
             totalItems: 0,
             displayedItems: [],
             activePage: 1
@@ -24,11 +25,11 @@ class List extends Component {
 
     renderItem(item) {
         const style = {
-            width: item.width,
-            height: item.height
+            width: item.previewWidth * this.state.photoSize,
+            height: item.previewHeight * this.state.photoSize
         };
         return <Link key={`img${item.id}`} className="item" to={`/view/${item.id}`}>
-            <img style={style} alt={item.tags} src={item.url}></img>
+            <img style={style} alt={item.tags} srcSet={item.previewSrcSet} src={item.url}></img>
         </Link>
 
     }
@@ -37,6 +38,27 @@ class List extends Component {
         return this.state.displayedItems.map((item) => {
             return this.renderItem(item);
         });
+    }
+
+    renderPhotoSizeButtons() {
+        return <div className="radio-group">
+            {this.renderPhotoSizeButton(1, "Small")}
+            {this.renderPhotoSizeButton(2, "Medium")}
+            {this.renderPhotoSizeButton(3, "Large")}
+            {this.renderPhotoSizeButton(4, "Larger")}
+        </div>
+    }
+
+    renderPhotoSizeButton(idx, lbl) {
+        let clsName = "btn";
+        if (this.state.photoSize === idx) {
+            clsName = clsName + " active"
+        }
+        return <label className={clsName} onClick={() => this.switchPhotoSize(idx)}>{lbl}</label>
+    }
+
+    switchPhotoSize(size) {
+        this.setState({...this.state, photoSize: size});
     }
 
     async pageChanged({activePage}) {
@@ -48,6 +70,8 @@ class List extends Component {
         return (
             <div className="list-page">
                 <h1>List Page</h1>
+
+                {this.renderPhotoSizeButtons()}
 
                 <div className="parent">
                     {this.renderItems()}

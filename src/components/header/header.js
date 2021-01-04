@@ -5,10 +5,9 @@ import './header.scss';
 import routes from '../../routes';
 
 class Header extends Component {
-    constructor({history}) {
+    constructor(props) {
         super();
         this.state = {
-            history,
             dropdownVisible: false
         };
     }
@@ -30,6 +29,7 @@ class Header extends Component {
 
                 <div className="group">
                     <h3>Wavebreak Challenge</h3>
+                    <h3>{this.props.title}</h3>
                     <div className="button-group" role="group">
                         {this.renderLinks()}
                     </div>

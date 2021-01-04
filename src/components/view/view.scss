@@ -1,5 +1,82 @@
 .view-page {
-    img {
-        width: 100%;
+    padding-left: 5px;
+    padding-right: 5px;
+    .container {
+        display: flex;
+        flex-direction: row;
+        .img-data {
+            padding: 5px 10px;
+            background: #f6f5fa;
+            border-bottom: 1px solid #eeeff2;
+            line-height: 1.7;
+            vertical-align: top;
+
+            display: flex;
+            flex-direction: column;
+            .row {
+                display: flex;
+                word-wrap: break-word;
+                strong {
+                    text-align: left;
+                    padding-right: 10px;
+                }
+                span {
+                    text-align: right;
+                }
+            }
+            th {
+                text-align: left;
+                max-width: 40%;
+            }
+            td {
+                text-align: right;
+                max-width: 60%;
+            }
+        }
+    }
+
+    @media (min-width: 815px) {
+        .container {
+            img {
+                max-width: 75%;
+            }
+            .img-data {
+                width: 24%;
+                padding: 5px 0.5%;
+                strong {
+                    width: 33%;
+                }
+                span {
+                    width: 66%;
+                }
+            }
+        }
+    }
+
+    @media (min-width: 815px) and (max-width: 1200px) {
+        .img-data {
+            font-size: 0.75rem;
+        }
+    }
+
+    @media (max-width: 814px) {
+        .container {
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            img {
+                width: 100%;
+                float: none;
+            }
+            .img-data {
+                width: auto;
+                .row {
+                    align-items: stretch;
+                    span {
+                        flex-grow: 2;
+                    }
+                }
+            }
+        }
     }
 }
