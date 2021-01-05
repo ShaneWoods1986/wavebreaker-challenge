@@ -8,19 +8,15 @@ function imageDataService() {
         return {...hrs};
     }
 
-    function getImageUrl(id, page, perPage = "20", searchTerm) {
+    function getImageUrl(id, page, perPage = "20") {
         let url = `https://pixabay.com/api/?key=${config.apiKey}&per_page=${perPage}`;
         if (id) {
             url = url + `&id=${id}`;
-        }
-        if (searchTerm) {
-            url = url + `&q=${searchTerm}`;
         }
         if (page) {
             url = url + `&page=${page}`;
         }
         return url;
-
     }
 
     function getImages(perPage = 20, page = 1) {

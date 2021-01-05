@@ -13,6 +13,7 @@ class ScrollToTop extends Component {
     scrollToTop() {
         document.body.scrollTop = 0;
         document.documentElement.scrollTop = 0;
+        this.setState({ buttonVisible: false });
     }
 
     scrollFunction() {
@@ -24,7 +25,7 @@ class ScrollToTop extends Component {
 
     render() {
         if (!this.state.buttonVisible) {
-            return <div></div>;
+            return <div/>;
         }
         return (
             <div className="scroll-to-top" onClick={() => this.scrollToTop()}>

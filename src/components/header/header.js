@@ -5,7 +5,7 @@ import "./header.scss";
 import routes from "../../routes";
 
 class Header extends Component {
-    constructor(props) {
+    constructor() {
         super();
         this.state = {
             dropdownVisible: false
