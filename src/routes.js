@@ -1,6 +1,6 @@
-import List from './components/list/list';
-import View from './components/view/view';
-import Header from './components/header/header';
+import List from "./components/list/list";
+import View from "./components/view/view";
+import Header from "./components/header/header";
 
 const routes = [
     {

@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-import './view.scss';
-import imageDataService from '../../data-services/img.service';
+import "./view.scss";
+import imageDataService from "../../data-services/img.service";
 
 class View extends Component {
     constructor(props) {
@@ -16,7 +16,7 @@ class View extends Component {
     }
 
     renderImage() {
-        return <img alt={this.state.image.tags} srcSet={this.state.image.srcSet} src={this.state.image.url}></img>
+        return (<img alt={this.state.image.tags} srcSet={this.state.image.srcSet} src={this.state.image.url}></img>);
     }
 
     renderImageData() {
@@ -41,13 +41,12 @@ class View extends Component {
             <strong>Size</strong>
             <span>{this.state.image.size}</span>
         </div>
-    </div>
+    </div>;
     }
 
     render() {
         return (
             <div className="view-page">
-                {/* <h1>View Page</h1> */}
                 <div className="container">
                     {this.renderImage()}
                     {this.renderImageData()}
@@ -57,7 +56,5 @@ class View extends Component {
         }
 
     }
-
-
 
 export default View;

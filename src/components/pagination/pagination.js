@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import './pagination.scss';
+import React, { Component } from "react";
+import "./pagination.scss";
 
 class Pagination extends Component {
     renderPageItems() {
@@ -19,7 +19,7 @@ class Pagination extends Component {
         if (i === this.props.activePage) {
             cssClass = cssClass + " active";
         }
-        return <div key={`pageItem${i}`} className={cssClass} onClick={() => this.changePage(i)}>{i}</div>
+        return (<div key={`pageItem${i}`} className={cssClass} onClick={() => this.changePage(i)}>{i}</div>);
     }
 
     changePage(page) {
@@ -27,9 +27,9 @@ class Pagination extends Component {
     }
 
     render() {
-        return <div className="pagination">
+        return (<div className="pagination">
             {this.renderPageItems()}
-        </div>
+        </div>);
     }
 }
 export default Pagination;

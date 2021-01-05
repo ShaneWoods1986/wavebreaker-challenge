@@ -1,9 +1,10 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
-import './list.scss';
-import Pagination from '../pagination/pagination';
-import imageDataService from '../../data-services/img.service';
+import "./list.scss";
+import Pagination from "../pagination/pagination";
+import imageDataService from "../../data-services/img.service";
+import ScrollToTop from "../scroll-top/scroll-top";
 
 class List extends Component {
     constructor(props) {
@@ -28,9 +29,9 @@ class List extends Component {
             width: item.previewWidth * this.state.photoSize,
             height: item.previewHeight * this.state.photoSize
         };
-        return <Link key={`img${item.id}`} className="item" to={`/view/${item.id}`}>
-            <img style={style} alt={item.tags} srcSet={item.previewSrcSet} src={item.url}></img>
-        </Link>
+        return (<Link key={`img${item.id}`} className="item" to={`/view/${item.id}`}>
+            <img style={style} alt={item.tags} srcSet={item.previewSrcSet} src={item.previewURL}></img>
+        </Link>);
 
     }
 
@@ -41,20 +42,20 @@ class List extends Component {
     }
 
     renderPhotoSizeButtons() {
-        return <div className="radio-group">
+        return (<div className="radio-group">
             {this.renderPhotoSizeButton(1, "Small")}
             {this.renderPhotoSizeButton(2, "Medium")}
             {this.renderPhotoSizeButton(3, "Large")}
             {this.renderPhotoSizeButton(4, "Larger")}
-        </div>
+        </div>);
     }
 
     renderPhotoSizeButton(idx, lbl) {
         let clsName = "btn";
         if (this.state.photoSize === idx) {
-            clsName = clsName + " active"
+            clsName = clsName + " active";
         }
-        return <label className={clsName} onClick={() => this.switchPhotoSize(idx)}>{lbl}</label>
+        return (<label className={clsName} onClick={() => this.switchPhotoSize(idx)}>{lbl}</label>);
     }
 
     switchPhotoSize(size) {
@@ -69,13 +70,12 @@ class List extends Component {
     render() {
         return (
             <div className="list-page">
-                <h1>List Page</h1>
-
                 {this.renderPhotoSizeButtons()}
 
                 <div className="parent">
                     {this.renderItems()}
                 </div>
+                <ScrollToTop></ScrollToTop>
                 <Pagination total={this.state.totalItems} entriesDisplayed={this.state.entriesDisplayed} activePage={this.state.activePage} pageChanged={(i) => this.pageChanged(i)}/>
 
             </div>

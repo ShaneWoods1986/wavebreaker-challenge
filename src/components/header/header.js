@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
-import './header.scss';
-import routes from '../../routes';
+import "./header.scss";
+import routes from "../../routes";
 
 class Header extends Component {
     constructor(props) {
@@ -35,7 +35,7 @@ class Header extends Component {
                     </div>
                 </div>
             </div>
-            )
+            );
         }
     }
     export default Header;

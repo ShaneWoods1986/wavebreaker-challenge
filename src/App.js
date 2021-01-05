@@ -1,9 +1,9 @@
-import './App.css';
-import React from 'react';
+import "./App.css";
+import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
-import routes from './routes';
-import List from './components/list/list';
+import routes from "./routes";
+import List from "./components/list/list";
 
 function App() {
   return (
