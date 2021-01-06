@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import routes from "./routes";
 import List from "./components/list/list";
+import Header from "./components/header/header";
 
 function App() {
   return (
@@ -20,7 +21,8 @@ function App() {
               component={props => (React.createElement(route.header, {...props, title: route.title}))}
               />
               ))}
-            <Route exact path="*" component={() => <div></div>}/>
+            <Route exact path="/" component={props => (React.createElement(Header, {...props, title: "Home"}))}/>
+            <Route exact path="*" component={props => (React.createElement(Header, {...props, title: "Home"}))}/>
           </Switch>
         </header>
 
